@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Info</title>
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+</head>
+<style>
+body {
+    background-color: black;
+    color: red;
+}
+.btn {
+  border: 2px solid white;
+  background-color: black;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 5px 15px;
+}
+.success {
+  border-color: white;
+  color: white;
+}
+.center-div
+{
+     margin: 0 auto;
+     width: 100px; 
+}
+.divbut
+{
+    padding-left: 20px;
+}
+</style>
+<body>
+    <h1>
+        <div id="timer" class="center-div" style="font-family: 'Orbitron', sans-serif;">30:00</div> 
+    </h1>
+    <div class="divbut">
+        <button onclick="reset()" class="btn success">Reset</button>
+        <button id="middle" onclick="startCD()" class="btn success">Start</button>
+        <button onclick="penalty()" class="btn success">Penalty</button>
+    </div>
+
+
+    <script>
+
+let clockOn = false;
+let HowManyMinutes = 30;
+let secPerMin = 60;
+let milisecPerSec = 1000;
+let time = HowManyMinutes * secPerMin * milisecPerSec;
+
+setInterval(function() {
+    if (clockOn == true) {
+        countdown();
+    }
+}, 50);
+
+function countdown() {
+    let backToSeconds = time / 1000;
+    var date = new Date(0);
+    date.setSeconds(backToSeconds); // specify value for SECONDS here
+    var timeString = date.toISOString().substr(14, 5);
+    document.getElementById("timer").innerHTML = `${timeString}`;
+    if (time == 0) {
+        stopCD();
+    } else {
+        time -= 50;
+    }
+}
+
+function startCD() {
+    clockOn = true;
+    document.getElementById("middle").onclick = stopCD;
+    document.getElementById("middle").innerHTML = "Stop";
+
+}
+
+function stopCD() {
+    clockOn = false;
+    document.getElementById("middle").onclick = startCD;
+    document.getElementById("middle").innerHTML = "Start";
+}
+
+function penalty() {
+    if (clockOn == true) {
+        if (time > 60000*2) {
+            time -= 60000*2;
+        }
+    }
+}
+
+function reset() {
+    if (clockOn == false) {
+        time = HowManyMinutes * secPerMin * milisecPerSec;
+        let backToSeconds = time / 1000;
+        var date = new Date(0);
+        date.setSeconds(backToSeconds); // specify value for SECONDS here
+        var timeString = date.toISOString().substr(14, 5);
+        document.getElementById("timer").innerHTML = `${timeString}`;
+    }
+
+}
+
+    </script>
+</body>
+</html>
