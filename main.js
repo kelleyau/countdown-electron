@@ -9,7 +9,7 @@ app.on('ready', () => {
     console.log('App is ready');
 
     app.dock.hide()
-    let alwaysOnTopWindow = new BrowserWindow({ width: 300, height: 150, frame: false, movable: true, resizable: false })
+    let alwaysOnTopWindow = new BrowserWindow({ width: 300, height: 150, frame: false, movable: true })
     alwaysOnTopWindow.setAlwaysOnTop(true, 'floating')
     alwaysOnTopWindow.setVisibleOnAllWorkspaces(true)
     alwaysOnTopWindow.setFullScreenable(false)
