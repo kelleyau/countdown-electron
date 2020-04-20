@@ -2,7 +2,7 @@
   "name": "countdown",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "electron": "electron ."
   },
@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^8.2.3",
-    "fluent-ffmpeg": "^2.1.2"
+    "electron": "^8.2.3"
   }
 }
