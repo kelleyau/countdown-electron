@@ -33,7 +33,7 @@ body {
     padding-left: 20px;
 }
 </style>
-<body>
+<body onload="onLoaded();">
     <h1>
         <div id="timer" class="center-div" style="font-family: 'Orbitron', sans-serif;">30:00</div> 
     </h1>
@@ -66,15 +66,10 @@ function countdown() {
 
 function startCD() {
     clockOn = true;
-    document.getElementById("middle").onclick = stopCD;
-    document.getElementById("middle").innerHTML = "Stop";
-
 }
 
 function stopCD() {
     clockOn = false;
-    document.getElementById("middle").onclick = startCD;
-    document.getElementById("middle").innerHTML = "Start";
 }
 
 function penalty() {
@@ -94,7 +89,27 @@ function reset() {
         var timeString = date.toISOString().substr(14, 5);
         document.getElementById("timer").innerHTML = `${timeString}`;
     }
+}
 
+function onLoaded() {
+    var source = new EventSource("http://192.168.1.6:3000/sse/countdown/");
+    source.onmessage = function (event) {
+        console.log("OnMessage called:");
+        console.dir(event);
+        let data = event.data;
+        if (data == "start") {
+            startCD();
+        }
+        if (data == "stop") {
+            stopCD();
+        }
+        if (data == "penalty") {
+            penalty();
+        }
+        if (data == "reset") {
+            reset();
+        }
+    }
 }
 
 
