@@ -12,9 +12,7 @@ app.on('ready', () => {
     let alwaysOnTopWindow = new BrowserWindow({ width: 300, height: 150, frame: false, movable: true })
     alwaysOnTopWindow.setAlwaysOnTop(true, 'floating')
     alwaysOnTopWindow.setVisibleOnAllWorkspaces(true)
-    alwaysOnTopWindow.setFullScreenable(false)
-    alwaysOnTopWindow.show()
-    alwaysOnTopWindow.setVisibleOnAllWorkspaces(false)
+    alwaysOnTopWindow.show();
     alwaysOnTopWindow.loadURL(`file://${__dirname}/index.html`);
     app.dock.show()
 
