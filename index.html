@@ -80,6 +80,12 @@ function penalty() {
     }
 }
 
+function addtwo() {
+    if (clockOn == true) {
+        time += 60000*2;
+    }
+}
+
 function reset() {
     if (clockOn == false) {
         time = HowManyMinutes * secPerMin * milisecPerSec;
@@ -105,6 +111,9 @@ function onLoaded() {
         }
         if (data == "penalty") {
             penalty();
+        }
+        if (data == "addtwo") {
+            addtwo();
         }
         if (data == "reset") {
             reset();
